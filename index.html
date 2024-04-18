@@ -1,26 +1,31 @@
-<!doctype html>
-<html lang="ru">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ФОТО ДНЯ</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Космическое изображение</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Космическое изображение дня</h1>
-        <label for="dateInput">Выберите дату:</label>
-        <input type="date" id="dateInput">
-        <button onclick="getSpaceImageForSelectedDate()">Получить изображение</button>
-        <div id="apiUrl"></div>
-        <div id="loader"></div>
-        <div id="imageAndApiResponseContainer">
-            <div id="spaceImageContainer"></div>
-            <div id="apiResponseContainer"></div>
-        </div>
+  <div class='container' id="app">
+    <h1>Космическое изображение</h1>
+    <label for="dateInput">Выберите дату: </label>
+    <input type="date" id="dateInput" v-model="selectedDate">
+    <br>
+    <button @click="getSpaceImage">Получить изображение</button>
+
+    <div id="apiUrl">{{ apiUrl }}</div>
+    <div id="loader" v-if="isLoading"></div>
+    <div id="spaceImageContainer" v-if="spaceImageUrl">
+      <img :src="spaceImageUrl" :alt="spaceImageTitle">
+      <p>{{ spaceImageTitle }}</p>
     </div>
-    <script src = "script.js"></script>
+    <button @click="showJsonResponse">Показать JSON ответ</button>
+    <div id="apiResponseContainer" v-if="apiResponse">
+      <pre>{{ apiResponse }}</pre>
+    </div>
+  </div>
+  <script src="https://unpkg.com/vue@3"></script>
+  <script src="script.js"></script>
 </body>
 </html>

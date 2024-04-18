@@ -19,6 +19,11 @@ button {
   margin-top: 10px;
 }
 
+pre {
+  white-space: pre-wrap;
+  word-break: keep-all;
+}
+
 button:hover {
   background-color: #2980b9;
 }
